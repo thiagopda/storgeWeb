@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Storgecare - Saúde domiciliar na palma da mão
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+MVP Healthtech
 
 ## Available Scripts
 
