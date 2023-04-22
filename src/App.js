@@ -7,7 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-        ...em construção...
+        Saúde domiciliar na palma da mão.
         </p>
       </header>
     </div>
