@@ -15,9 +15,9 @@ function App() {
         <Navbar />
         <Routes>
          <Route exact path="/" element={<Home/>}/>
-          <Route path="/search" element={Search} />
-          <Route path="/signup" element={SignUp} />
-          <Route path="/signin" element={SignIn} />
+          <Route exact path="/search" element={Search} />
+          <Route exact path="/signup" element={SignUp} />
+          <Route exact path="/signin" element={SignIn} />
         </Routes>
       </div>
     </Router>
