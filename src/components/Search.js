@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import ProfessionalsList from './ProfessionalsList';
+import React, { useState } from "react";
+import ProfessionalsList from "./ProfessionalsList";
+import axios from 'axios';
 
 const Search = () => {
-  const [query, setQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    // Implemente a lógica de pesquisa aqui
+
+    // Faça uma chamada API para pesquisar profissionais com base na consulta de pesquisa
+    // Atualize a lista de resultados de pesquisa de acordo
   };
 
   return (
     <div>
-      <h1>Pesquisar Profissionais</h1>
+      <h2>Pesquisar Profissionais</h2>
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          placeholder="Digite sua pesquisa..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Pesquisar por especialidade..."
         />
         <button type="submit">Pesquisar</button>
       </form>
-      <ProfessionalsList query={query} />
+      <ProfessionalsList professionals={searchResults} />
     </div>
   );
 };

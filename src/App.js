@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React, { useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import CurrentUserContext from './providers/CurrentUserContext';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Search from './components/Search';
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
+import Routes from './routes';
+
 import './App.css';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(null);
+
   return (
     <Router>
       <div className="App">
         <Navbar />
-        <Routes>
-         <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/search" element={Search} />
-          <Route exact path="/signup" element={SignUp} />
-          <Route exact path="/signin" element={SignIn} />
-        </Routes>
+        <CurrentUserContext.Provider value={currentUser}>
+          <Routes />
+        </CurrentUserContext.Provider>
       </div>
     </Router>
   );
@@ -26,3 +23,17 @@ function App() {
 
 export default App;
 
+
+/*
+const express = require('express');
+const app = express();
+const routes = require('./routes');
+
+app.use(express.json());
+app.use(routes);
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
+*/

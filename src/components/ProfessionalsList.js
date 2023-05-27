@@ -1,15 +1,17 @@
-import React from 'react';
-import ProfessionalCard from './ProfessionalCard';
+import React from "react";
 
-const ProfessionalsList = ({ query }) => {
-  // Implemente a lógica para buscar os profissionais com base na consulta
-  const professionals = []; // Exemplo: use useEffect e useState para buscar os profissionais
-
+const ProfessionalsList = ({ professionals }) => {
   return (
     <div>
-      {professionals.map((professional) => (
-        <ProfessionalCard key={professional.id} professional={professional} />
-      ))}
+      <h2>Lista de Profissionais</h2>
+      <ul>
+        {professionals.map((professional) => (
+          <li key={professional.id}>
+            {professional.nome} {professional.sobrenome} -{" "}
+            {professional.especialidade}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

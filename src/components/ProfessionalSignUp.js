@@ -1,0 +1,70 @@
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useForm } from 'react-hook-form';
+
+const ProfessionalSignUp = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState('');
+
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      const response = await axios.post('http://localhost:3001/profissionais', data);
+      console.log(response.data);
+    } catch (err) {
+      setServerError('Ocorreu um erro ao cadastrar. Por favor, tente novamente.');
+    }
+    setLoading(false);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label>
+        Nome:
+        <input {...register('nome', { required: 'Nome é obrigatório.' })} />
+        {errors.nome && <p>{errors.nome.message}</p>}
+      </label>
+      <label>
+        Sobrenome:
+        <input {...register('sobrenome', { required: 'Sobrenome é obrigatório.' })} />
+        {errors.sobrenome && <p>{errors.sobrenome.message}</p>}
+      </label>
+      <label>
+        Especialidade:
+        <input {...register('especialidade', { required: 'Especialidade é obrigatória.' })} />
+        {errors.especialidade && <p>{errors.especialidade.message}</p>}
+      </label>
+      <label>
+        Endereço:
+        <input {...register('endereco', { required: 'Endereço é obrigatório.' })} />
+        {errors.endereco && <p>{errors.endereco.message}</p>}
+      </label>
+      <label>
+        Email:
+        <input {...register('email', { required: 'Email é obrigatório.' })} />
+        {errors.email && <p>{errors.email.message}</p>}
+      </label>
+      <label>
+        Telefone:
+        <input {...register('telefone', { required: 'Telefone é obrigatório.' })} />
+        {errors.telefone && <p>{errors.telefone.message}</p>}
+      </label>
+      <label>
+        Data de nascimento:
+        <input {...register('data_nascimento', { required: 'Data de nascimento é obrigatória.' })} />
+        {errors.data_nascimento && <p>{errors.data_nascimento.message}</p>}
+      </label>
+      <label>
+        Senha:
+        <input {...register('senha', { required: 'Senha é obrigatória.' })} />
+        {errors.senha && <p>{errors.senha.message}</p>}
+      </label>
+      <input type="submit" value="Cadastrar" disabled={loading} />
+      {loading && <p>Cadastrando...</p>}
+      {serverError && <p>{serverError}</p>}
+    </form>
+  );
+};
+
+export default ProfessionalSignUp;
